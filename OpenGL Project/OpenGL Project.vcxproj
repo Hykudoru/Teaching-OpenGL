@@ -71,10 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Hykudo\Downloads\glad\include;C:\Users\Hykudo\Downloads\glfw-3.3.8.bin.WIN64\glfw-3.3.8.bin.WIN64\include;</IncludePath>
+    <IncludePath>C:\Users\Hykudo\source\repos\OpenGL-Project\Libraries\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Hykudo\Downloads\glad\include;C:\Users\Hykudo\Downloads\glfw-3.3.8.bin.WIN64\glfw-3.3.8.bin.WIN64\include;</IncludePath>
+    <LibraryPath>C:\Users\Hykudo\source\repos\OpenGL-Project\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Hykudo\Downloads\glad\include;C:\Users\Hykudo\Downloads\glfw-3.3.8.bin.WIN64\glfw-3.3.8.bin.WIN64\include;</IncludePath>
+    <IncludePath>C:\Users\Hykudo\source\repos\OpenGL-Project\Libraries\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Hykudo\Downloads\glad\include;C:\Users\Hykudo\Downloads\glfw-3.3.8.bin.WIN64\glfw-3.3.8.bin.WIN64\include;</IncludePath>
+    <LibraryPath>C:\Users\Hykudo\source\repos\OpenGL-Project\Libraries\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\Hykudo\source\repos\OpenGL-Project\Libraries\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>C:\Users\Hykudo\source\repos\OpenGL-Project\Libraries\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Users\Hykudo\source\repos\OpenGL-Project\Libraries\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>C:\Users\Hykudo\source\repos\OpenGL-Project\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,6 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -102,6 +113,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -117,7 +129,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>glfw3.lib;opengl32.lib;C:\Users\Hykudo\Downloads\glfw-3.3.8.bin.WIN64\glfw-3.3.8.bin.WIN64\lib-vc2022</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;glfw3dll.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;glfw3dll.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,7 +149,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>glfw3.lib;opengl32.lib;C:\Users\Hykudo\Downloads\glfw-3.3.8.bin.WIN64\glfw-3.3.8.bin.WIN64\lib-vc2022</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;glfw3dll.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;glfw3dll.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -150,6 +162,7 @@
     <Image Include="..\..\..\..\Downloads\glad\src\Setup.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="main.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
