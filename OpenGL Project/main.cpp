@@ -14,9 +14,10 @@ layout(location = 0) in vec3 aPos;
 layout(location = 1) in vec3 aColor;
 out vec3 color;
 uniform float scale;
+uniform mat3 rot;
 
 void main() {
-    gl_Position = vec4(aPos.x * scale, aPos.y * scale, aPos.z * scale, 1.0);
+    gl_Position = vec4(rot * (aPos*scale), 1.0);
     color = aColor;
 }    
 )";
@@ -33,9 +34,58 @@ void main() {
 GLfloat vertices[] =
 {
 //      Position              RGB
-   -0.5f, 0.0f, 0.0f,   1.0f, 0.0f, 0.0f,
-    0.0f, 0.8f, 0.0f,   0.0f, 1.0f, 0.0f,
-    0.5f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f
+//   -0.5f, 0.0f, 0.0f,   1.0f, 0.0f, 0.0f,
+//    0.0f, 0.8f, 0.0f,   0.0f, 1.0f, 0.0f,
+//    0.5f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f
+ 
+//      Position              RGB
+   // Front Face
+   0.5f, -0.5f, 0.5f,   1.0f, 0.0f, 0.0f, // bottom-right-front
+   -0.5f, -0.5f, 0.5f,  1.0f, 0.0f, 0.0f, // bottom-left-front
+   -0.5f, 0.5f, 0.5f,   1.0f, 0.0f, 0.0f, // top-left-front
+   -0.5f, 0.5f, 0.5f,   1.0f, 0.0f, 0.0f, // top-left-front
+   0.5f, 0.5f, 0.5f,    1.0f, 0.0f, 0.0f, // top-right-front 
+   0.5f, -0.5f, 0.5f,   1.0f, 0.0f, 0.0f, // bottom-right-front
+
+   // Back Face
+  -0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 0.0f, // bottom-left-back
+   0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 0.0f, // bottom-right-back
+   0.5f, 0.5f, -0.5f,    0.0f, 1.0f, 0.0f, // top-right-back
+   0.5f, 0.5f, -0.5f,    0.0f, 1.0f, 0.0f, // top-right-back
+  -0.5f, 0.5f, -0.5f,    0.0f, 1.0f, 0.0f, // top-left-back
+  -0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 0.0f, // bottom-left-back
+   
+   // Right Face
+   0.5f, -0.5f, -0.5f,   0.0f, 0.0f, 1.0f, // bottom-right-back
+   0.5f, -0.5f, 0.5f,    0.0f, 0.0f, 1.0f, // bottom-right-front
+   0.5f, 0.5f, 0.5f,     0.0f, 0.0f, 1.0f, // top-right-front
+   0.5f, 0.5f, 0.5f,     0.0f, 0.0f, 1.0f, // top-right-front
+   0.5f, 0.5f, -0.5f,    0.0f, 0.0f, 1.0f, // top-right-back    
+   0.5f, -0.5f, -0.5f,   0.0f, 0.0f, 1.0f, // bottom-right-back
+
+   // Left Face
+   -0.5f, -0.5f, 0.5f,   1.0f, 1.0f, 0.0f, // bottom-left-front
+   -0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 0.0f, // bottom-left-back
+   -0.5f, 0.5f, -0.5f,   1.0f, 1.0f, 0.0f, // top-left-back
+   -0.5f, 0.5f, -0.5f,   1.0f, 1.0f, 0.0f, // top-left-back
+   -0.5f, 0.5f, 0.5f,    1.0f, 1.0f, 0.0f, // top-left-front
+   -0.5f, -0.5f, 0.5f,   1.0f, 1.0f, 0.0f, // bottom-left-front
+
+   // Top Face
+   0.5f, 0.5f, 0.5f,    1.0f, 0.0f, 1.0f, // top-right-front
+   -0.5f, 0.5f, 0.5f,   1.0f, 0.0f, 1.0f, // top-left-front
+   -0.5f, 0.5f, -0.5f,  1.0f, 0.0f, 1.0f, // top-left-back
+   -0.5f, 0.5f, -0.5f,  1.0f, 0.0f, 1.0f, // top-left-back
+   0.5f, 0.5f, -0.5f,   1.0f, 0.0f, 1.0f, // top-right-back
+   0.5f, 0.5f, 0.5f,    1.0f, 0.0f, 1.0f, // top-right-front
+
+   // Bottom Face
+   0.5f, -0.5f, 0.5f,    0.0f, 1.0f, 1.0f, // bottom-right-front
+   -0.5f, -0.5f, 0.5f,   0.0f, 1.0f, 1.0f, // bottom-left-front
+   -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f, // bottom-left-back
+   -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f, // bottom-left-back
+   0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 1.0f, // bottom-right-back
+   0.5f, -0.5f, 0.5f,    0.0f, 1.0f, 1.0f, // bottom-right-front
 };
 
 GLuint shaderProgram;
@@ -146,23 +196,30 @@ int main()
 
     SetupShaders();
     SetupBuffers();
+    Matrix3x3 rotation = Matrix3x3::identity;
     GLuint uniID = glGetUniformLocation(shaderProgram, "scale");
+    GLuint uniRotID = glGetUniformLocation(shaderProgram, "rot");
 
     // bottom left to top right
     glViewport(0, 0, screenWidth, screenHeight);
+
+    glEnable(GL_DEPTH_TEST);
 
     while (!glfwWindowShouldClose(window))
     {
         // Prepare to clear screen color and swap buffers to display the changed color.
         glClearColor(0.07f, 0.13f, 0.17f, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         static int frame = 0;
         frame += 1;
+        rotation = rotation * Matrix3x3::RotY((3.14159f / 4.0f) * 0.001f) * Matrix3x3::RotX((3.14159f / 4.0f) * 0.001f);
+
         glUseProgram(shaderProgram);
-        glUniform1f(uniID, cos(frame * (3.14159f / 4.0f) * 0.01f));//Must declare after shader program
+        glUniform1f(uniID, 0.1 + abs(cos(frame * 0.0005f)));//Must declare after shader program
+        glUniformMatrix3fv(uniRotID, 1, false, (const float*)rotation.m);//Must declare after shader program
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3); // (type, starting index, num to draw) example: index 1 = (0,0,0)
+        glDrawArrays(GL_TRIANGLES, 0, 36);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
