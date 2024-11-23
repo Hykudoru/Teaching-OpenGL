@@ -12,15 +12,18 @@ const char* vertexShaderSource = R"(
 #version 330 core
 layout(location = 0) in vec3 aPos;
 layout(location = 1) in vec3 aColor;
+
+uniform float u_scale;
+uniform mat3 u_rotation;
+
 out vec3 color;
-uniform float scale;
-uniform mat3 rot;
 
 void main() {
-    gl_Position = vec4(rot * (aPos*scale), 1.0);
+    gl_Position = vec4(u_rotation * (aPos*u_scale), 1.0);
     color = aColor;
 }    
 )";
+
 // This code runs on the GPU
 const char* fragmentShaderSource = R"(
 #version 330 core
@@ -181,7 +184,7 @@ int main()
     GLFWwindow* window = glfwCreateWindow(screenWidth, screenHeight, "OpenGL Project!", NULL, NULL);
     if (window == NULL)
     {
-        std::cout << "ERROR: Window couldn't open" << std::endl;
+        std::cout << "ERROR: Failed to create window." << std::endl;
         glfwTerminate();
         return -1;
     }
@@ -189,7 +192,7 @@ int main()
 
     if (!gladLoadGL())
     {
-        std::cout << "ERROR: Couldn't load glad." << std::endl;
+        std::cout << "ERROR: Failed to load glad." << std::endl;
         glfwTerminate();
         return -1;
     }
@@ -197,8 +200,8 @@ int main()
     SetupShaders();
     SetupBuffers();
     Matrix3x3 rotation = Matrix3x3::identity;
-    GLuint uniID = glGetUniformLocation(shaderProgram, "scale");
-    GLuint uniRotID = glGetUniformLocation(shaderProgram, "rot");
+    GLuint uniScaleID = glGetUniformLocation(shaderProgram, "u_scale");
+    GLuint uniRotationID = glGetUniformLocation(shaderProgram, "u_rotation");
 
     // bottom left to top right
     glViewport(0, 0, screenWidth, screenHeight);
@@ -214,10 +217,12 @@ int main()
         static int frame = 0;
         frame += 1;
         rotation = rotation * Matrix3x3::RotY((3.14159f / 4.0f) * 0.001f) * Matrix3x3::RotX((3.14159f / 4.0f) * 0.001f);
+        float scale = 0.1 + abs(cos(frame * 0.0005f));
 
         glUseProgram(shaderProgram);
-        glUniform1f(uniID, 0.1 + abs(cos(frame * 0.0005f)));//Must declare after shader program
-        glUniformMatrix3fv(uniRotID, 1, false, (const float*)rotation.m);//Must declare after shader program
+
+        glUniform1f(uniScaleID, scale);//Must declare after shader program
+        glUniformMatrix3fv(uniRotationID, 1, false, (const float*)rotation.m);//Must declare after shader program
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         
