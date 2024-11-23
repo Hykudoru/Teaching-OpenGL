@@ -91,8 +91,18 @@ GLfloat vertices[] =
    0.5f, -0.5f, 0.5f,    0.0f, 1.0f, 1.0f, // bottom-right-front
 };
 
-GLuint shaderProgram;
-static void SetupShaders()
+static void DebugCompiledShader(GLuint shader)
+{
+    GLint success;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        char infoLog[512];
+        glGetShaderInfoLog(shader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER COMPILATION FAILED\n" << infoLog << std::endl;
+    }
+}
+
+static GLuint SetupShaders()
 {
     // Create a vertex shader object and specify it as a vertex shader type
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -103,6 +113,9 @@ static void SetupShaders()
     // Compile the vertex shader to convert the source code into machine-readable instructions
     glCompileShader(vertexShader);
 
+    // Shader Compilation Debugging
+    DebugCompiledShader(vertexShader);
+
     // Create a fragment shader object and specify it as a fragment shader type
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
@@ -112,8 +125,11 @@ static void SetupShaders()
     // Compile the fragment shader to convert the source code into machine-readable instructions
     glCompileShader(fragmentShader);
 
+    // Shader Compilation Debugging
+    DebugCompiledShader(fragmentShader);
+
     // Create a shader program to link the compiled shaders together
-    shaderProgram = glCreateProgram();
+    GLuint shaderProgram = glCreateProgram();
 
     // Attach the compiled vertex shader to the shader program
     glAttachShader(shaderProgram, vertexShader);
@@ -129,6 +145,8 @@ static void SetupShaders()
 
     // Delete the fragment shader object, as it is no longer needed after linking
     glDeleteShader(fragmentShader);
+
+    return shaderProgram;
 }
 
 GLuint VAO, VBO;
@@ -197,7 +215,7 @@ int main()
         return -1;
     }
 
-    SetupShaders();
+    GLuint shaderProgram = SetupShaders();
     SetupBuffers();
     Matrix3x3 rotation = Matrix3x3::identity;
     GLuint uniScaleID = glGetUniformLocation(shaderProgram, "u_scale");

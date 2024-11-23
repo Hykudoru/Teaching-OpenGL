@@ -30,23 +30,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Matrix.h",
-              "DocumentMoniker": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.h",
-              "RelativeDocumentMoniker": "OpenGL Project\\Matrix.h",
-              "ToolTip": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.h",
-              "RelativeToolTip": "OpenGL Project\\Matrix.h",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-09T04:45:53.813Z"
             },
             {
               "$type": "Document",
@@ -92,10 +80,22 @@
               "RelativeDocumentMoniker": "OpenGL Project\\main.cpp",
               "ToolTip": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\main.cpp",
               "RelativeToolTip": "OpenGL Project\\main.cpp",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAAANoAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB4AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-08T23:17:03.537Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Matrix.h",
+              "DocumentMoniker": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.h",
+              "RelativeDocumentMoniker": "OpenGL Project\\Matrix.h",
+              "ToolTip": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.h",
+              "RelativeToolTip": "OpenGL Project\\Matrix.h",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-09T04:45:53.813Z"
             }
           ]
         }
