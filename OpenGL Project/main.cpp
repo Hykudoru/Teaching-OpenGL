@@ -4,6 +4,16 @@
 #include <math.h>
 #include "Matrix.h"
 
+double deltaTime = 0;
+
+void Time()
+{
+    static double prevTime = 0;
+    double currentTime = glfwGetTime();
+    deltaTime = currentTime - prevTime;
+    prevTime = currentTime;
+}
+
 int screenWidth = 800;
 int screenHeight = 600;
 
@@ -13,13 +23,15 @@ const char* vertexShaderSource = R"(
 layout(location = 0) in vec3 aPos;
 layout(location = 1) in vec3 aColor;
 
-uniform float u_scale;
-uniform mat3 u_rotation;
+//uniform float u_scale;
+//uniform mat3 u_rotation;
+uniform mat4 u_model;
 
 out vec3 color;
 
 void main() {
-    gl_Position = vec4(u_rotation * (aPos*u_scale), 1.0);
+    //gl_Position =  vec4(u_rotation * (aPos * u_scale), 1.0);
+    gl_Position = u_model * vec4(aPos, 1.0);
     color = aColor;
 }    
 )";
@@ -37,18 +49,13 @@ void main() {
 GLfloat vertices[] =
 {
 //      Position              RGB
-//   -0.5f, 0.0f, 0.0f,   1.0f, 0.0f, 0.0f,
-//    0.0f, 0.8f, 0.0f,   0.0f, 1.0f, 0.0f,
-//    0.5f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f
- 
-//      Position              RGB
    // Front Face
-   0.5f, -0.5f, 0.5f,   1.0f, 0.0f, 0.0f, // bottom-right-front
-   -0.5f, -0.5f, 0.5f,  1.0f, 0.0f, 0.0f, // bottom-left-front
-   -0.5f, 0.5f, 0.5f,   1.0f, 0.0f, 0.0f, // top-left-front
-   -0.5f, 0.5f, 0.5f,   1.0f, 0.0f, 0.0f, // top-left-front
-   0.5f, 0.5f, 0.5f,    1.0f, 0.0f, 0.0f, // top-right-front 
-   0.5f, -0.5f, 0.5f,   1.0f, 0.0f, 0.0f, // bottom-right-front
+   0.5f, -0.5f, 0.5f,   1.0f, 1.0f, 1.0f, // bottom-right-front
+   -0.5f, -0.5f, 0.5f,  1.0f, 1.0f, 1.0f, // bottom-left-front
+   -0.5f, 0.5f, 0.5f,   1.0f, 1.0f, 1.0f, // top-left-front
+   -0.5f, 0.5f, 0.5f,   1.0f, 1.0f, 1.0f, // top-left-front
+   0.5f, 0.5f, 0.5f,    0.0f, 1.0f, 0.0f, // top-right-front 
+   0.5f, -0.5f, 0.5f,   0.0f, 0.0f, 1.0f, // bottom-right-front
 
    // Back Face
   -0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 0.0f, // bottom-left-back
@@ -172,6 +179,16 @@ static void SetupBuffers()
                   |       12 bytes        8 bytes        12 bytes      |
                   |       index 0         index 1        index 2       |
                   |____________________________________________________|
+
+                            GPU Buffer Memory Layout
+                  |-----------------------------------------|
+                  |       Position             RGB          |
+      Vertex  --->|   0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f    |
+                  |  |________________||________________|   |
+                  |      Attribute         Attribute        |
+                  |       12 bytes          12 bytes        |
+                  |       index 0           index 1         |
+                  |_________________________________________|
     
      Param 1. Index is to which attribute you're referring to. The way our shader reads all this is by an index. Picture an array but types are different.
      Param 2. How many floats per vertex. 
@@ -217,9 +234,12 @@ int main()
 
     GLuint shaderProgram = SetupShaders();
     SetupBuffers();
+
+    Vec3 position;
     Matrix3x3 rotation = Matrix3x3::identity;
-    GLuint uniScaleID = glGetUniformLocation(shaderProgram, "u_scale");
     GLuint uniRotationID = glGetUniformLocation(shaderProgram, "u_rotation");
+    GLuint uniScaleID = glGetUniformLocation(shaderProgram, "u_scale");
+    GLuint uniModelID = glGetUniformLocation(shaderProgram, "u_model");
 
     // bottom left to top right
     glViewport(0, 0, screenWidth, screenHeight);
@@ -228,22 +248,43 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
+        Time();
         // Prepare to clear screen color and swap buffers to display the changed color.
         glClearColor(0.07f, 0.13f, 0.17f, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-        static int frame = 0;
-        frame += 1;
-        rotation = rotation * Matrix3x3::RotY((3.14159f / 4.0f) * 0.001f) * Matrix3x3::RotX((3.14159f / 4.0f) * 0.001f);
-        float scale = 0.1 + abs(cos(frame * 0.0005f));
-
         glUseProgram(shaderProgram);
 
+        static int frame = 0;
+        frame += 1;
+       /*
+        float scale = 0.1f + abs(cos(frame * 0.0005f));
+        rotation = rotation * Matrix3x3::RotY((3.14159f / 4.0f) * deltaTime) * Matrix3x3::RotX((3.14159f / 4.0f) * deltaTime);
+
         glUniform1f(uniScaleID, scale);//Must declare after shader program
-        glUniformMatrix3fv(uniRotationID, 1, false, (const float*)rotation.m);//Must declare after shader program
+        glUniformMatrix3fv(uniRotationID, 1, GL_FALSE, (const float*)rotation.m);//Must declare after shader program
+        
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
-        
+        */
+        for (size_t i = 0; i < 2; i++)
+        {
+            float scale = 0.1f + abs(cos(frame * 0.0005f));
+            rotation = rotation * Matrix3x3::RotY((3.14159f / 4.0f) * deltaTime) * Matrix3x3::RotX((3.14159f / 4.0f) * deltaTime);
+            position = Vec3(i, 0.0f, 0.0f);
+            float model[4][4] = {
+                {scale * rotation.m[0][0], scale * rotation.m[0][1], scale * rotation.m[0][2], 0.0f},
+                {scale * rotation.m[1][0], scale * rotation.m[1][1], scale * rotation.m[1][2], 0.0f},
+                {scale * rotation.m[2][0], scale * rotation.m[2][1], scale * rotation.m[2][2], 0.0f},
+                {position.x, position.y, position.z, 1.0f},
+            };
+
+            //glUniform1f(uniScaleID, scale);//Must declare after shader program
+            //glUniformMatrix3fv(uniRotationID, 1, GL_FALSE, (const float*)rotation.m);//Must declare after shader program
+            glUniformMatrix4fv(uniModelID, 1, GL_FALSE, (const float*)model);//Must declare after shader program
+            glBindVertexArray(VAO);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

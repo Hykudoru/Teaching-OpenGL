@@ -3,14 +3,14 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+struct Vec4;
+
 struct Vec3
 {
-public:
     float x, y, z;
 
-    Vec3() : x(0), y(0), z(0) { }
-
-    Vec3(float xVal, float yVal, float zVal) : x(xVal), y(yVal), z(zVal) { }
+    Vec3() : x(0), y(0), z(0) {}
+    Vec3(float xVal, float yVal, float zVal) : x(xVal), y(yVal), z(zVal) {}
 
     Vec3 operator+(const Vec3& other)
     {
@@ -53,10 +53,24 @@ public:
         this->z *= scalar;
         return *this;
     }
+
+    operator Vec4();
 };
 
-//Syntax: vector * scalar
-Vec3 operator*(const Vec3& vector, const float& scalar);
-
 float DotProduct(const Vec3& a, const Vec3& b);
+
+
+struct Vec4
+{
+public:
+    float x, y, z, w;
+
+    Vec4() : x(0), y(0), z(0), w(1.0f) {}
+
+    Vec4(float xVal, float yVal, float zVal, float wVal) : x(xVal), y(yVal), z(zVal), w(wVal) {}
+
+    operator Vec3();
+};
+
+float DotProduct(const Vec4& a, const Vec4& b);
 #endif
