@@ -156,6 +156,7 @@
     <ClCompile Include="..\..\..\Downloads\glad\src\glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="main.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

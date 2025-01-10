@@ -5,6 +5,13 @@
 
 struct Vec4;
 
+struct Vec2
+{
+    float x, y;
+    Vec2(float x, float y) : x(x), y(y) {
+
+    }
+};
 struct Vec3
 {
     float x, y, z;
