@@ -1,6 +1,5 @@
 ﻿  main.cpp
-C:\Users\Hykudo\Documents\OpenGL-Project\OpenGL Project\main.cpp(8,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\Hykudo\Documents\OpenGL-Project\OpenGL Project\main.cpp(11,21): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Hykudo\Documents\OpenGL-Project\OpenGL Project\main.cpp(368,54): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\Hykudo\Documents\OpenGL-Project\OpenGL Project\main.cpp(372,29): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+C:\Users\Hykudo\Documents\OpenGL-Project\OpenGL Project\main.cpp(380,40): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+C:\Users\Hykudo\Documents\OpenGL-Project\OpenGL Project\main.cpp(381,63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   OpenGL Project.vcxproj -> C:\Users\Hykudo\Documents\OpenGL-Project\x64\Debug\OpenGL Project.exe

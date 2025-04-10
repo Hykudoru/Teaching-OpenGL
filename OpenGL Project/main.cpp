@@ -5,7 +5,7 @@
 #include <vector>
 #include "Matrix.h"
 #include "stb_image.h"
-const int PI = 3.14159f;
+const float PI = 3.14159f;
 
 float ToRad(float deg) {
     return deg * PI / 180.0;
@@ -309,10 +309,17 @@ static void SetupBuffers()
     glBindVertexArray(0); // 0 = usually means no state
 }
 
+Transform* ship1 = nullptr;
+
 void Init()
 {
+    ship1 = new Transform(1, Vec3(0, 0, 0), Matrix3x3::identity);
     new Transform(1, Vec3(0, 0, 0), Matrix3x3::identity);
-    new Transform(1, Vec3(0, 0, 0), Matrix3x3::identity);
+}
+
+void Update() 
+{
+    
 }
 
 // OpenGL operates like a state machine.
@@ -352,6 +359,7 @@ int main()
     glEnable(GL_DEPTH_TEST);
 
     Init();
+    Update();
 
     while (!glfwWindowShouldClose(window))
     {
@@ -365,19 +373,20 @@ int main()
         static int frame = 0;
         frame += 1;
 
-        rotation = Matrix3x3::RotY((3.14159f / 4.0f) * deltaTime) * rotation;// *Matrix3x3::RotX((3.14159f / 4.0f) * deltaTime);
-        for (size_t i = 0; i < 2; i++)
+        for (size_t i = 0; i < Transform::objects.size(); i++)
         {
-            float scale = 1;//0.1f + abs(cos(frame * 0.0005f));
-            position = Vec3(i, 0.0f, -5);
-            float model[4][4] = {
-                {scale * rotation.m[0][0], scale * rotation.m[0][1], scale * rotation.m[0][2], position.x},
-                {scale * rotation.m[1][0], scale * rotation.m[1][1], scale * rotation.m[1][2], position.y},
-                {scale * rotation.m[2][0], scale * rotation.m[2][1], scale * rotation.m[2][2], position.z},
+            Transform* transform = Transform::objects[i];
+            transform->scale = 1;//0.1f + abs(cos(frame * 0.0005f));
+            transform->position = Vec3(i, 0.0f, 10.0f * -abs(cos(frame * PI * 0.005f)));
+            transform->rotation = Matrix3x3::RotY((PI / 4.0f) * deltaTime) * transform->rotation;// *Matrix3x3::RotX((3.14159f / 4.0f) * deltaTime);
+            float modelMatrixTRS[4][4] = {
+                {transform->scale * transform->rotation.m[0][0], transform->scale * transform->rotation.m[0][1], transform->scale * transform->rotation.m[0][2], transform->position.x},
+                {transform->scale * transform->rotation.m[1][0], transform->scale * transform->rotation.m[1][1], transform->scale * transform->rotation.m[1][2], transform->position.y},
+                {transform->scale * transform->rotation.m[2][0], transform->scale * transform->rotation.m[2][1], transform->scale * transform->rotation.m[2][2], transform->position.z},
                 {0.0f, 0.0f, 0.0f, 1.0f},
             };
             
-            glUniformMatrix4fv(uniModelID, 1, GL_TRUE, (const float*)model);//Must declare after shader program
+            glUniformMatrix4fv(uniModelID, 1, GL_TRUE, (const float*)modelMatrixTRS);//Must declare after shader program
             
             //glActiveTexture(GL_TEXTURE0);
             //glBindTexture(GL_TEXTURE_2D, textureID);
