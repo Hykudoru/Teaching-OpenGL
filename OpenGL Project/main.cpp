@@ -87,7 +87,7 @@ void main() {
     float w = pos.z;
     pos.x /= pos.z;
     pos.y /= pos.z;
-    pos.z /= -10000.0;
+    pos.z = 0;
     gl_Position = pos;
     color = aColor;
     uv = aUV;

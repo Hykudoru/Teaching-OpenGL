@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|solutionrelative:OpenGL Project\\Matrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|solutionrelative:OpenGL Project\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -19,10 +23,6 @@
       "RelativeMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|solutionrelative:OpenGL Project\\Matrix.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|solutionrelative:OpenGL Project\\Matrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\stb_image.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2E7832AA-0172-455E-B185-AD6C0E35B180}|OpenGL Project\\OpenGL Project.vcxproj|solutionrelative:OpenGL Project\\stb_image.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,62 +54,62 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\main.cpp",
               "RelativeDocumentMoniker": "OpenGL Project\\main.cpp",
               "ToolTip": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\main.cpp",
               "RelativeToolTip": "OpenGL Project\\main.cpp",
-              "ViewState": "AgIAAGgBAAAAAAAAAAAAwHwBAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABUAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-08T23:17:03.537Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T23:17:03.537Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Vector.h",
               "DocumentMoniker": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Vector.h",
               "RelativeDocumentMoniker": "OpenGL Project\\Vector.h",
               "ToolTip": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Vector.h",
               "RelativeToolTip": "OpenGL Project\\Vector.h",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-09T04:40:20.71Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Vector.cpp",
               "DocumentMoniker": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Vector.cpp",
               "RelativeDocumentMoniker": "OpenGL Project\\Vector.cpp",
               "ToolTip": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Vector.cpp",
               "RelativeToolTip": "OpenGL Project\\Vector.cpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-09T04:39:36.731Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Matrix.h",
               "DocumentMoniker": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.h",
               "RelativeDocumentMoniker": "OpenGL Project\\Matrix.h",
               "ToolTip": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.h",
               "RelativeToolTip": "OpenGL Project\\Matrix.h",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAIgAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-09T04:45:53.813Z"
+              "WhenOpened": "2024-11-09T04:45:53.813Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Matrix.cpp",
               "DocumentMoniker": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.cpp",
               "RelativeDocumentMoniker": "OpenGL Project\\Matrix.cpp",
               "ToolTip": "C:\\Users\\Hykudo\\Documents\\OpenGL-Project\\OpenGL Project\\Matrix.cpp",
               "RelativeToolTip": "OpenGL Project\\Matrix.cpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-09T04:41:44.913Z"
             }
